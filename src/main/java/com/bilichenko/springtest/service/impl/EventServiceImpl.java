@@ -20,4 +20,19 @@ public class EventServiceImpl implements EventService {
 	public Optional<List<Event>> getAll() {
 		return Optional.of(eventRepository.findAll());
 	}
+
+	@Override
+	public Event save(Event event) {
+		return eventRepository.save(event);
+	}
+
+	@Override
+	public Optional<Event> getById(Long id) {
+		return eventRepository.findById(id);
+	}
+
+	@Override
+	public Event update(Event event) {
+		return eventRepository.save(event);
+	}
 }

@@ -1,13 +1,15 @@
 package com.bilichenko.springtest.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -20,9 +22,14 @@ public class Event {
 	private Long id;
 	private String name;
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(joinColumns = @JoinColumn(name = "event_id"),
+			inverseJoinColumns = @JoinColumn(name = "user_id"))
 	private List<User> users;
 
+	public Event() {
+		users = new ArrayList<>();
+	}
 	public Event(Long id, String name, List<User> users) {
 		this.id = id;
 		this.name = name;
@@ -51,6 +58,16 @@ public class Event {
 
 	public void setUsers(List<User> users) {
 		this.users = users;
+	}
+
+	public void addUser(User user) {
+		users.add(user);
+		user.getEvents().add(this);
+	}
+
+	public void removeUser(User user) {
+		users.remove(user);
+		user.getEvents().remove(this);
 	}
 
 	@Override

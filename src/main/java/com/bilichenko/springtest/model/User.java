@@ -1,5 +1,6 @@
 package com.bilichenko.springtest.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -26,11 +27,14 @@ public class User {
 	@Column(name = "last_name")
 	private String lastName;
 
-	@ManyToMany
+	@ManyToMany(mappedBy = "users")
 	private List<Event> events;
 
+	public User() {
+		events = new ArrayList<>();
+	}
+
 	public User(Long id, String email, String password, String firstName, String lastName, List<Event> events) {
-		super();
 		this.id = id;
 		this.email = email;
 		this.password = password;

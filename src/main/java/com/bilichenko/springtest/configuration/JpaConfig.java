@@ -27,7 +27,7 @@ public class JpaConfig {
 		emfb.setDataSource(dataSource);
 		emfb.setJpaVendorAdapter(jpaVendorAdapter);
 		emfb.setJpaProperties(getJpaProperties(env));
-		emfb.setPackagesToScan("com.bilichenko.model");
+		emfb.setPackagesToScan("com.bilichenko.springtest.model");
 		return emfb;
 	}
 
@@ -46,6 +46,7 @@ public class JpaConfig {
 		jpaProperties.setProperty("hiberante.dialect", env.getProperty("hiberante.dialect"));
 		jpaProperties.setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
 		jpaProperties.setProperty("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
+		jpaProperties.setProperty("hibernate.format_sql", env.getProperty("hibernate.format_sql"));
 		return jpaProperties;
 	}
 }

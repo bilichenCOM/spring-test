@@ -7,6 +7,6 @@
 <title>Hello page</title>
 </head>
 <body>
-	<h1 style="color: pink">Hi, there!</h1>
+	<h1 style="color: pink">Hello, there!</h1>
 </body>
 </html>
